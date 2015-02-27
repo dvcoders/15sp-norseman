@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Includes for fullpage.js library https://github.com/alvarotrigo/fullPage.js/ -->
+    <link rel="stylesheet" type="text/css" href="lib/fullpage.js/jquery.fullPage.css" />
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/fullpage.js/jquery.fullPage.min.js"></script>
+
+    <!-- Othe includes -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link href='http://fonts.googleapis.com/css?family=Parisienne' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC' rel='stylesheet' type='text/css'> 
+    <link href='http://fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+
+    <script>
+      // init fullpage.js
+      $(document).ready(function() {
+        $('#fullpage').fullpage({
+          'navigation': true,
+          'menu': true,
+          'verticalCentered': false,
+          'easingcss3': 'ease-in-out'
+        });
+      });
+    </script>
+
+  </head>
+  <body id="body" class="fp-viewing-0">
+
+    <section id="fullpage">
+      <section class="section" id="page1">
+        <header>The Norseman</header>
+        <footer onclick="$.fn.fullpage.moveTo(2);">
+          Menu
+          <i class="fa fa-hand-o-down fa-lg"></i>
+        </footer>
+      </section>
+
+      <section class="section" id="page2">
+        <section class="placeholder bottom right">
+          <header>Fish Fillet</header>
+          <section>Fish fillets comprise the flesh of the fish, which is the skeletal muscles and fat as opposed to the bones and viscera.</section>
+          <footer>
+            <i class="fa fa-usd"></i>
+            <span>5.50</span>
+          </footer>
+        </section>
+      </section>
+
+      <section class="section" id="page3">
+        <section class="placeholder top left">
+          <header>Pizza</header>
+          <section>Oven-baked flat bread generally topped with tomato sauce and cheese. It is commonly supplemented with a selection of meats, vegetables and condiments.</section>
+          <footer>
+            <i class="fa fa-usd"></i>
+            <span>6.45</span>
+          </footer>
+        </section>
+      </section>
+
+      <section class="section" id="page4">
+        <section class="placeholder top left">
+          <header>Beef Steak</header>
+          <section>A cut of meat sliced perpendicular to the muscle fibers, potentially including a bone.</section>
+          <footer>
+            <i class="fa fa-usd"></i>
+            <span>6.45</span>
+          </footer>
+        </section>
+      </section>
+
+    </section>
+
+  </body>
+</html>
