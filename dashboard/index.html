@@ -11,68 +11,74 @@
   </head>
   
   <body>
-      <div class="col-md-5"  style="background-color:#6495ED">
-      <strong class="text-center">Form to Edit</strong>
-      <form class="form-horizontal">
-        <div class="form-group">
-          <label class="sr-only" for="itemName">Name</label>
-          <textarea type="text" class="form-control" placeholder="Name" rows="1"></textarea>
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-5 form-container">
+          <strong class="text-center">Form to Edit</strong>
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="sr-only" for="itemName">Name</label>
+              <textarea type="text" class="form-control" placeholder="Name" rows="1"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="itemDescription">Description</label>
+              <textarea  type="text" class="form-control" placeholder="Description" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="itemPrice">Price</label>
+              <textarea type="text" class="form-control" placeholder="Price($)" rows="1"></textarea>
+            </div>
+            <button type="button" class="btn btn-default">Done</button>
+          </form>
         </div>
-        <div class="form-group">
-          <label class="sr-only" for="itemDescription">Description</label>
-          <textarea  type="text" class="form-control" placeholder="Description" rows="5"></textarea>
+      
+        <div class="col-md-7 table-container">
+          <div class="table-responsive">
+            <table class="table"><strong>Current Menu Items</strong>
+              <tr>
+                <td class="active">Name</td>
+                <td class="success">Description</td>
+                <td class="warning">Price</td>
+              </tr>
+              <tr>
+                <td class="active">...</td>
+                <td class="success">...</td>
+                <td class="warning">...</td>
+                <td class="info">
+                  <button type="button" class="btn btn-default">Edit</button>
+                  <button type="button" class="btn btn-default">Delete</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="active">
+                  Sample Text
+                </td>
+                <td class="success">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                  Fusce sit amet tempus arcu. 
+                  Curabitur enim orci, feugiat dictum molestie commodo, 
+                  tempus sit amet est. Mauris et pulvinar urna, in ultricies nulla. 
+                  Fusce eu auctor urna. Quisque lacinia metus quis ligula mattis, eget rutrum lectus consectetur. 
+                  Sed interdum, lacus a accumsan auctor, est lacus rhoncus nisi, ac commodo eros arcu vitae neque. 
+                  Suspendisse efficitur mi ante, quis faucibus erat tempus vitae. 
+                  Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; 
+                  Vestibulum nec auctor nisi. Pellentesque varius condimentum mollis. 
+                  Sed interdum ligula vitae tellus lobortis, ac porttitor magna fermentum. 
+                  Praesent sagittis quam eget lorem finibus hendrerit a et odio. Fusce ut efficitur augue. 
+                </td>
+                <td class="warning">
+                  $123.45
+                </td>
+                <td class="info">
+                  <button type="button" class="btn btn-default">Edit</button>
+                  <button type="button" class="btn btn-default">Delete</button>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
-        <div class="form-group">
-          <label class="sr-only" for="itemPrice">Price</label>
-          <textarea type="text" class="form-control" placeholder="Price($)" rows="1"></textarea>
-        </div>
-        <button type="button" class="btn btn-default">Done</button>
-      </form>
-    </div>
-    
-    <div class="col-md-7"  style="background-color:#E6E6FA">
-      <div class="table-responsive">
-        <table class="table"><strong>Current Menu Items</strong>
-          <tr>
-            <td class="active">Name</td>
-            <td class="success">Description</td>
-            <td class="warning">Price</td>
-          </tr>
-          <tr>
-            <td class="active">...</td>
-            <td class="success">...</td>
-            <td class="warning">...</td>
-            <td class="info">
-              <button type="button" class="btn btn-default">Edit</button>
-              <button type="button" class="btn btn-default">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td class="active">
-              Sample Text
-            </td>
-            <td class="success">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Fusce sit amet tempus arcu. 
-              Curabitur enim orci, feugiat dictum molestie commodo, 
-              tempus sit amet est. Mauris et pulvinar urna, in ultricies nulla. 
-              Fusce eu auctor urna. Quisque lacinia metus quis ligula mattis, eget rutrum lectus consectetur. 
-              Sed interdum, lacus a accumsan auctor, est lacus rhoncus nisi, ac commodo eros arcu vitae neque. 
-              Suspendisse efficitur mi ante, quis faucibus erat tempus vitae. 
-              Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; 
-              Vestibulum nec auctor nisi. Pellentesque varius condimentum mollis. 
-              Sed interdum ligula vitae tellus lobortis, ac porttitor magna fermentum. 
-              Praesent sagittis quam eget lorem finibus hendrerit a et odio. Fusce ut efficitur augue. 
-            </td>
-            <td class="warning">
-              $123.45
-            </td>
-            <td class="info">
-              <button type="button" class="btn btn-default">Edit</button>
-              <button type="button" class="btn btn-default">Delete</button>
-            </td>
-          </tr>
-        </table>
+
       </div>
     </div>
 
