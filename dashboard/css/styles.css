@@ -1,9 +1,10 @@
 html, body {
   height: 100%;
 }
+
 .form-container, .table-container {
   height: 100%;
 }
 .header {
-  font-style:Calibri;
+  font-style: Calibri;
 }
