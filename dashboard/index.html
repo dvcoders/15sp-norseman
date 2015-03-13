@@ -7,6 +7,9 @@
 
     <!---CSS-->
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+    <!--JQuery-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   
   </head>
   
@@ -47,41 +50,6 @@
                 <td class="success">Description</td>
                 <td class="warning">Price</td>
               </tr>
-              <tr>
-                <td class="active">...</td>
-                <td class="success">...</td>
-                <td class="warning">...</td>
-                <td class="info">
-                  <button type="button" class="btn btn-default">Edit</button>
-                  <button type="button" class="btn btn-default">Delete</button>
-                </td>
-              </tr>
-              <tr>
-                <td class="active">
-                  Sample Text
-                </td>
-                <td class="success">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                  Fusce sit amet tempus arcu. 
-                  Curabitur enim orci, feugiat dictum molestie commodo, 
-                  tempus sit amet est. Mauris et pulvinar urna, in ultricies nulla. 
-                  Fusce eu auctor urna. Quisque lacinia metus quis ligula mattis, eget rutrum lectus consectetur. 
-                  Sed interdum, lacus a accumsan auctor, est lacus rhoncus nisi, ac commodo eros arcu vitae neque. 
-                  Suspendisse efficitur mi ante, quis faucibus erat tempus vitae. 
-                  Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; 
-                  Vestibulum nec auctor nisi. Pellentesque varius condimentum mollis. 
-                  Sed interdum ligula vitae tellus lobortis, ac porttitor magna fermentum. 
-                  Praesent sagittis quam eget lorem finibus hendrerit a et odio. Fusce ut efficitur augue. 
-                </td>
-                <td class="warning">
-                  $123.45
-                </td>
-                
-                <td class="info">
-                  <button type="button" class="btn btn-default">Edit</button>
-                  <button type="button" class="btn btn-default">Delete</button>
-                </td>
-              </tr>
             </table>
           </div>
         </div>
@@ -89,5 +57,44 @@
       </div>
     </div>
 
+    <!--JQuery script-->
+    <script>
+      //JSON object
+      var x = [
+                {
+                  "name":"...",
+                  "description":"...",
+                  "price":"..."
+                },
+                {
+                  "name":"Sample Text",
+                  "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dictum vitae magna in euismod. Cras sapien ligula, consectetur tempor metus a, fringilla luctus augue. Etiam semper nisi at sapien eleifend, nec imperdiet lectus placerat. Proin pharetra mi ut ipsum ultricies porttitor. Vestibulum in dolor consectetur, pretium arcu sed, rhoncus dolor. Aenean viverra felis vitae pharetra tempor. Aliquam blandit varius urna, vel tincidunt justo ultrices a. Aenean dignissim convallis porta. Nam accumsan pretium imperdiet. Sed gravida sit amet dui eu pulvinar.", 
+                  "price":"123.45"
+                },
+                {
+                  "name":"pizza",
+                  "description":"Pizza is something",
+                  "price":"4.50"
+                }
+              ];
+
+      var tableElement = '<tr>' +
+                            '<td class="active item-name"></td>' +
+                            '<td class="success item-description"></td>' +
+                            '<td class="warning item-price"></td>' +
+                            '<td class="info">' +
+                              '<button type="button" class="btn btn-default">Edit</button>' +
+                              '<button type="button" class="btn btn-default">Delete</button>' +
+                            '</td>' +
+                          '</tr>';
+            
+      x.forEach(function(element, i) {
+        $(".table").append(tableElement);
+        $(".table tr:nth(" + (i + 1) + ") td.item-name").text(element.name);
+        $(".table tr:nth(" + (i + 1) + ") td.item-description").text(element.description);
+        $(".table tr:nth(" + (i + 1) + ") td.item-price").text(element.price);
+      });
+
+    </script>
   </body>
 </html>
