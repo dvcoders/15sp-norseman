@@ -8,7 +8,7 @@
     <!---CSS-->
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 
-    <!--JS-->
+    <!--JQuery-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   
   </head>
@@ -38,7 +38,7 @@
               <label class="sr-only" for="itemPrice">Price</label>
               <input type="text" class="form-control" placeholder="Price($)">
             </div>
-            <button type="button" class="btn btn-default" id="done">Done</button>
+            <button type="button" class="btn btn-default">Done</button>
           </form>
         </div>
       
@@ -60,41 +60,40 @@
     <!--JQuery script-->
     <script>
     //JSON object
-    var x=
-          [
-            {
-              "name":"...",
-              "description":"...",
-              "price":"..."
-            },
-            {
-              "name":"Sample Text",
-              "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dictum vitae magna in euismod. Cras sapien ligula, consectetur tempor metus a, fringilla luctus augue. Etiam semper nisi at sapien eleifend, nec imperdiet lectus placerat. Proin pharetra mi ut ipsum ultricies porttitor. Vestibulum in dolor consectetur, pretium arcu sed, rhoncus dolor. Aenean viverra felis vitae pharetra tempor. Aliquam blandit varius urna, vel tincidunt justo ultrices a. Aenean dignissim convallis porta. Nam accumsan pretium imperdiet. Sed gravida sit amet dui eu pulvinar.", 
-              "price":"123.45"
-            },
-            {
-              "name":"pizza",
-              "description":"Pizza is something",
-              "price":"4.50"
-            }
-          ];
+    var x = [
+              {
+                "name":"...",
+                "description":"...",
+                "price":"..."
+              },
+              {
+                "name":"Sample Text",
+                "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dictum vitae magna in euismod. Cras sapien ligula, consectetur tempor metus a, fringilla luctus augue. Etiam semper nisi at sapien eleifend, nec imperdiet lectus placerat. Proin pharetra mi ut ipsum ultricies porttitor. Vestibulum in dolor consectetur, pretium arcu sed, rhoncus dolor. Aenean viverra felis vitae pharetra tempor. Aliquam blandit varius urna, vel tincidunt justo ultrices a. Aenean dignissim convallis porta. Nam accumsan pretium imperdiet. Sed gravida sit amet dui eu pulvinar.", 
+                "price":"123.45"
+              },
+              {
+                "name":"pizza",
+                "description":"Pizza is something",
+                "price":"4.50"
+              }
+            ];
 
-          var tableElement = '<tr>' +
-                                '<td class="active item-name"></td>' +
-                                '<td class="success item-description"></td>' +
-                                '<td class="warning item-price"></td>' +
-                                '<td class="info">' +
-                                  '<button type="button" class="btn btn-default">Edit</button>' +
-                                  '<button type="button" class="btn btn-default">Delete</button>' +
-                                '</td>' +
-                              '</tr>';
+    var tableElement = '<tr>' +
+                          '<td class="active item-name"></td>' +
+                          '<td class="success item-description"></td>' +
+                          '<td class="warning item-price"></td>' +
+                          '<td class="info">' +
+                            '<button type="button" class="btn btn-default">Edit</button>' +
+                            '<button type="button" class="btn btn-default">Delete</button>' +
+                          '</td>' +
+                        '</tr>';
           
-          x.forEach(function(element, i) {
-            $(".table").append(tableElement);
-            $(".table tr:nth(" + (i + 1) + ") td.item-name").text(element.name);
-            $(".table tr:nth(" + (i + 1) + ") td.item-description").text(element.description);
-            $(".table tr:nth(" + (i + 1) + ") td.item-price").text(element.price);
-          })
+    x.forEach(function(element, i) {
+      $(".table").append(tableElement);
+      $(".table tr:nth(" + (i + 1) + ") td.item-name").text(element.name);
+      $(".table tr:nth(" + (i + 1) + ") td.item-description").text(element.description);
+      $(".table tr:nth(" + (i + 1) + ") td.item-price").text(element.price);
+    });
 
     </script>
   </body>
