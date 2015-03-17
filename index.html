@@ -3,11 +3,12 @@
   <head>
     <!-- Includes for fullpage.js library https://github.com/alvarotrigo/fullPage.js/ -->
     <link rel="stylesheet" type="text/css" href="lib/fullpage.js/jquery.fullPage.css" />
-
+    
+    <!-- Minified JQuery library -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="lib/fullpage.js/jquery.fullPage.min.js"></script>
 
-    <!-- Othe includes -->
+    <!-- Other includes -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -16,7 +17,8 @@
     <link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC' rel='stylesheet' type='text/css'> 
     <link href='http://fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
-
+    
+    <!-- Fullpager -->
     <script>
       // init fullpage.js
       $(document).ready(function() {
@@ -40,17 +42,8 @@
           <i class="fa fa-hand-o-down fa-lg"></i>
         </footer>
       </section>
-
-      <section class="section" id="page2">
-        <section class="placeholder bottom right">
-          <header>Fish Fillet</header>
-          <section>Fish fillets comprise the flesh of the fish, which is the skeletal muscles and fat as opposed to the bones and viscera.</section>
-          <footer>
-            <i class="fa fa-usd"></i>
-            <span>5.50</span>
-          </footer>
-        </section>
-      </section>
+      
+      <!-- Insertion point (above) -->
 
       <section class="section" id="page3">
         <section class="placeholder top left">
@@ -75,6 +68,38 @@
       </section>
 
     </section>
-
+    
+    <!-- JQuery -->
+    <script>
+      //JSON object
+      var x = [ 
+                {
+                  "name":"Fish Fillet",
+                  "description":"Fish fillets comprise the flesh of the fish, which is the skeletal muscles and fat as opposed to the bones and viscera.",
+                  "price":"5.50",
+                  "placeholder":"bottom right"
+                }
+              ];
+      var pageElement = '<section class="section">' +
+                            '<section>' +
+                              '<header></header>' + //name
+                              '<section></section>' + //description
+                              '<footer>' +
+                                '<i class="fa fa-usd"></i>' +
+                                '<span></span>' +  //price
+                              '</footer>' +
+                            '</section>' +
+                          '</section>';
+      
+      //loop
+      x.forEach(function(element, i) {
+        $(pageElement).insertAfter("#page1");
+        $(".section:nth(" + (i+1) + ")").attr("id", "page" + (i+2) );
+        $(".section:nth(" + (i+1) + ") section:nth(0)").attr("class", "placeholder " + element.placeholder);
+        $(".section:nth(" + (i+1) + ") header").text(element.name);
+        $(".section:nth(" + (i+1) + ") section:nth(1) ").text(element.description);
+        $(".section:nth(" + (i+1) + ") span").text(element.price);
+      });
+    </script>
   </body>
 </html>
