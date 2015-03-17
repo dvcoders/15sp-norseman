@@ -45,28 +45,6 @@
       
       <!-- Insertion point (above) -->
 
-      <section class="section" id="page3">
-        <section class="placeholder top left">
-          <header>Pizza</header>
-          <section>Oven-baked flat bread generally topped with tomato sauce and cheese. It is commonly supplemented with a selection of meats, vegetables and condiments.</section>
-          <footer>
-            <i class="fa fa-usd"></i>
-            <span>6.45</span>
-          </footer>
-        </section>
-      </section>
-
-      <section class="section" id="page4">
-        <section class="placeholder top left">
-          <header>Beef Steak</header>
-          <section>A cut of meat sliced perpendicular to the muscle fibers, potentially including a bone.</section>
-          <footer>
-            <i class="fa fa-usd"></i>
-            <span>6.45</span>
-          </footer>
-        </section>
-      </section>
-
     </section>
     
     <!-- JQuery -->
@@ -78,27 +56,39 @@
                   "description":"Fish fillets comprise the flesh of the fish, which is the skeletal muscles and fat as opposed to the bones and viscera.",
                   "price":"5.50",
                   "placeholder":"bottom right"
+                },
+                {
+                  "name":"Pizza",
+                  "description":"Oven-baked flat bread generally topped with tomato sauce and cheese. It is commonly supplemented with a selection of meats, vegetables and condiments.",
+                  "price":"6.45",
+                  "placeholder":"top left"
+                },
+                {
+                  "name":"Beef Steak",
+                  "description":"A cut of meat sliced perpendicular to the muscle fibers, potentially including a bone.",
+                  "price":"6.45",
+                  "placeholder":"top left"
                 }
               ];
       var pageElement = '<section class="section">' +
                             '<section>' +
-                              '<header></header>' + //name
+                              '<header></header>' +   //name
                               '<section></section>' + //description
                               '<footer>' +
                                 '<i class="fa fa-usd"></i>' +
-                                '<span></span>' +  //price
+                                '<span></span>' +     //price
                               '</footer>' +
                             '</section>' +
                           '</section>';
       
       //loop
       x.forEach(function(element, i) {
-        $(pageElement).insertAfter("#page1");
-        $(".section:nth(" + (i+1) + ")").attr("id", "page" + (i+2) );
-        $(".section:nth(" + (i+1) + ") section:nth(0)").attr("class", "placeholder " + element.placeholder);
-        $(".section:nth(" + (i+1) + ") header").text(element.name);
-        $(".section:nth(" + (i+1) + ") section:nth(1) ").text(element.description);
-        $(".section:nth(" + (i+1) + ") span").text(element.price);
+        $(pageElement).insertAfter(".section:nth(" + (i) + ")");
+        $(".section:nth(" + (i + 1) + ")").attr("id", "page" + (i + 2));
+        $(".section:nth(" + (i + 1) + ") section:nth(0)").attr("class", "placeholder " + element.placeholder);
+        $(".section:nth(" + (i + 1) + ") header").text(element.name);
+        $(".section:nth(" + (i + 1) + ") section:nth(1) ").text(element.description);
+        $(".section:nth(" + (i + 1) + ") span").text(element.price);
       });
     </script>
   </body>
