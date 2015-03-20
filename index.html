@@ -43,7 +43,6 @@
         </footer>
       </section>
       
-      <!-- Insertion point (above) -->
 
     </section>
     
@@ -55,22 +54,25 @@
                   "name":"Fish Fillet",
                   "description":"Fish fillets comprise the flesh of the fish, which is the skeletal muscles and fat as opposed to the bones and viscera.",
                   "price":"5.50",
-                  "placeholder":"bottom right"
+                  "placeholder":"bottom right",
+                  "url":"img/menu/fish_bg.jpg"
                 },
                 {
                   "name":"Pizza",
                   "description":"Oven-baked flat bread generally topped with tomato sauce and cheese. It is commonly supplemented with a selection of meats, vegetables and condiments.",
                   "price":"6.45",
-                  "placeholder":"top left"
+                  "placeholder":"top left",
+                  "url":"img/menu/pizza_bg.jpg"
                 },
                 {
                   "name":"Beef Steak",
                   "description":"A cut of meat sliced perpendicular to the muscle fibers, potentially including a bone.",
                   "price":"6.45",
-                  "placeholder":"top left"
+                  "placeholder":"top left",
+                  "url":"img/menu/steak_bg.jpeg"
                 }
               ];
-      var pageElement = '<section class="section">' +
+      var pageElement = '<section class="section page">' +
                             '<section>' +
                               '<header></header>' +   //name
                               '<section></section>' + //description
@@ -84,11 +86,14 @@
       //loop
       x.forEach(function(element, i) {
         $(pageElement).insertAfter(".section:nth(" + (i) + ")");
-        $(".section:nth(" + (i + 1) + ")").attr("id", "page" + (i + 2));
-        $(".section:nth(" + (i + 1) + ") section:nth(0)").attr("class", "placeholder " + element.placeholder);
-        $(".section:nth(" + (i + 1) + ") header").text(element.name);
-        $(".section:nth(" + (i + 1) + ") section:nth(1) ").text(element.description);
-        $(".section:nth(" + (i + 1) + ") span").text(element.price);
+        $(".page:nth(" + i + ")").css({
+                                        "background": "url(" + element.url + ") no-repeat center center",
+                                        "background-size": "cover"
+                                      });
+        $(".page:nth(" + i + ") section:nth(0)").addClass("placeholder " + element.placeholder);
+        $(".page:nth(" + i + ") header").text(element.name);
+        $(".page:nth(" + i + ") section:nth(1)").text(element.description);
+        $(".page:nth(" + i + ") span").text(element.price);
       });
     </script>
   </body>
