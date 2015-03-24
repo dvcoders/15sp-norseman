@@ -1,2 +1,2 @@
 # norseman
-Website for norseman
+Website for norseman.
