@@ -73,12 +73,12 @@
                 }
               ];
       var pageElement = '<section class="section page">' +
-                            '<section>' +
-                              '<header></header>' +   //name
-                              '<section></section>' + //description
+                            '<section class="placeholder">' +
+                              '<header class="name"></header>' +   //name
+                              '<section class="description"></section>' + //description
                               '<footer>' +
                                 '<i class="fa fa-usd"></i>' +
-                                '<span></span>' +     //price
+                                '<span class="price"></span>' +     //price
                               '</footer>' +
                             '</section>' +
                           '</section>';
@@ -90,10 +90,10 @@
                                         "background": "url(" + element.url + ") no-repeat center center",
                                         "background-size": "cover"
                                       });
-        $(".page:nth(" + i + ") section:nth(0)").addClass("placeholder " + element.placeholder);
-        $(".page:nth(" + i + ") header").text(element.name);
-        $(".page:nth(" + i + ") section:nth(1)").text(element.description);
-        $(".page:nth(" + i + ") span").text(element.price);
+        $(".page:nth(" + i + ") .placeholder").addClass(element.placeholder);
+        $(".page:nth(" + i + ") .name").text(element.name);
+        $(".page:nth(" + i + ") .description").text(element.description);
+        $(".page:nth(" + i + ") .price").text(element.price);
       });
     </script>
   </body>
