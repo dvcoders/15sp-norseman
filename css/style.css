@@ -58,24 +58,6 @@ body.fp-viewing-0 #static-nav {
     padding: 2% 4%;
   }
 
-#page2 {
-  background: url("../img/menu/fish_bg.jpg") no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-#page3 {
-  background: url("../img/menu/pizza_bg.jpg") no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-#page4 {
-  background: url("../img/menu/steak_bg.jpeg") no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
 .placeholder {
   position: absolute;
   width: 35%;

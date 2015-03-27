@@ -3,11 +3,12 @@
   <head>
     <!-- Includes for fullpage.js library https://github.com/alvarotrigo/fullPage.js/ -->
     <link rel="stylesheet" type="text/css" href="lib/fullpage.js/jquery.fullPage.css" />
-
+    
+    <!-- Minified JQuery library -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="lib/fullpage.js/jquery.fullPage.min.js"></script>
 
-    <!-- Othe includes -->
+    <!-- Other includes -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -16,7 +17,8 @@
     <link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC' rel='stylesheet' type='text/css'> 
     <link href='http://fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
-
+    
+    <!-- Fullpager -->
     <script>
       // init fullpage.js
       $(document).ready(function() {
@@ -40,41 +42,59 @@
           <i class="fa fa-hand-o-down fa-lg"></i>
         </footer>
       </section>
-
-      <section class="section" id="page2">
-        <section class="placeholder bottom right">
-          <header>Fish Fillet</header>
-          <section>Fish fillets comprise the flesh of the fish, which is the skeletal muscles and fat as opposed to the bones and viscera.</section>
-          <footer>
-            <i class="fa fa-usd"></i>
-            <span>5.50</span>
-          </footer>
-        </section>
-      </section>
-
-      <section class="section" id="page3">
-        <section class="placeholder top left">
-          <header>Pizza</header>
-          <section>Oven-baked flat bread generally topped with tomato sauce and cheese. It is commonly supplemented with a selection of meats, vegetables and condiments.</section>
-          <footer>
-            <i class="fa fa-usd"></i>
-            <span>6.45</span>
-          </footer>
-        </section>
-      </section>
-
-      <section class="section" id="page4">
-        <section class="placeholder top left">
-          <header>Beef Steak</header>
-          <section>A cut of meat sliced perpendicular to the muscle fibers, potentially including a bone.</section>
-          <footer>
-            <i class="fa fa-usd"></i>
-            <span>6.45</span>
-          </footer>
-        </section>
-      </section>
+      
 
     </section>
-
+    
+    <!-- JQuery -->
+    <script>
+      //JSON object
+      var x = [ 
+                {
+                  "name":"Fish Fillet",
+                  "description":"Fish fillets comprise the flesh of the fish, which is the skeletal muscles and fat as opposed to the bones and viscera.",
+                  "price":"5.50",
+                  "placeholder":"bottom right",
+                  "url":"img/menu/fish_bg.jpg"
+                },
+                {
+                  "name":"Pizza",
+                  "description":"Oven-baked flat bread generally topped with tomato sauce and cheese. It is commonly supplemented with a selection of meats, vegetables and condiments.",
+                  "price":"6.45",
+                  "placeholder":"top left",
+                  "url":"img/menu/pizza_bg.jpg"
+                },
+                {
+                  "name":"Beef Steak",
+                  "description":"A cut of meat sliced perpendicular to the muscle fibers, potentially including a bone.",
+                  "price":"6.45",
+                  "placeholder":"top left",
+                  "url":"img/menu/steak_bg.jpeg"
+                }
+              ];
+      var pageElement = '<section class="section page">' +
+                            '<section class="placeholder">' +
+                              '<header class="name"></header>' +   //name
+                              '<section class="description"></section>' + //description
+                              '<footer>' +
+                                '<i class="fa fa-usd"></i>' +
+                                '<span class="price"></span>' +     //price
+                              '</footer>' +
+                            '</section>' +
+                          '</section>';
+      
+      //loop
+      x.forEach(function(element, i) {
+        $(pageElement).insertAfter(".section:nth(" + (i) + ")");
+        $(".page:nth(" + i + ")").css({
+                                        "background": "url(" + element.url + ") no-repeat center center",
+                                        "background-size": "cover"
+                                      });
+        $(".page:nth(" + i + ") .placeholder").addClass(element.placeholder);
+        $(".page:nth(" + i + ") .name").text(element.name);
+        $(".page:nth(" + i + ") .description").text(element.description);
+        $(".page:nth(" + i + ") .price").text(element.price);
+      });
+    </script>
   </body>
 </html>
