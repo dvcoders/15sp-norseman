@@ -59,12 +59,15 @@
       var norsemanMenuObject = new NorsemanMenuObject();
       norsemanMenuObject.fetch({
         success: function(myObject) {
+          console.log(myObject);
           myObject.attributes.results.forEach(function(element, i) {
             $(pageElement).insertAfter(".section:nth(" + (i) + ")");
+            if(element.background) {
             $(".page:nth(" + i + ")").css({
-                                            "background": "url(" + element.url + ") no-repeat center center",
+                                            "background": "url(" + element.background._url + ") no-repeat center center",
                                             "background-size": "cover"
                                           });
+            }
             $(".page:nth(" + i + ") .placeholder").addClass(element.placeholder);
             $(".page:nth(" + i + ") .name").text(element.name);
             $(".page:nth(" + i + ") .description").text(element.description);

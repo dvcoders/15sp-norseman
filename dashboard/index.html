@@ -128,6 +128,14 @@
           norsemanMenuObject.set("name", elementName);
           norsemanMenuObject.set("description", elementDescription);
           norsemanMenuObject.set("price", elementPrice);
+
+          var fileUploadControl = $("#bg-image-upload")[0];
+          if (fileUploadControl.files.length > 0) {
+            var file = fileUploadControl.files[0];
+            var parseFile = new Parse.File("photo.jpg", file);
+            norsemanMenuObject.set("background", parseFile);
+          }
+
           norsemanMenuObject.save(null, {
             success: function(myObject) {
               $('.active-edit td.item-name').text(elementName);
