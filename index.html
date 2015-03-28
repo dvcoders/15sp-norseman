@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+    <meta charset="utf-8">
+    <meta name="description" content="norseman">
+
     <!-- Includes for fullpage.js library https://github.com/alvarotrigo/fullPage.js/ -->
     <link rel="stylesheet" type="text/css" href="lib/fullpage.js/jquery.fullPage.css" />
     
@@ -18,18 +22,8 @@
     <link href='http://fonts.googleapis.com/css?family=Fauna+One' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
     
-    <!-- Fullpager -->
-    <script>
-      // init fullpage.js
-      $(document).ready(function() {
-        $('#fullpage').fullpage({
-          'navigation': true,
-          'menu': true,
-          'verticalCentered': false,
-          'easingcss3': 'ease-in-out'
-        });
-      });
-    </script>
+    <!--Parse-->
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.0.min.js"></script>
 
   </head>
   <body id="body" class="fp-viewing-0">
@@ -48,30 +42,8 @@
     
     <!-- JQuery -->
     <script>
-      //JSON object
-      var x = [ 
-                {
-                  "name":"Fish Fillet",
-                  "description":"Fish fillets comprise the flesh of the fish, which is the skeletal muscles and fat as opposed to the bones and viscera.",
-                  "price":"5.50",
-                  "placeholder":"bottom right",
-                  "url":"img/menu/fish_bg.jpg"
-                },
-                {
-                  "name":"Pizza",
-                  "description":"Oven-baked flat bread generally topped with tomato sauce and cheese. It is commonly supplemented with a selection of meats, vegetables and condiments.",
-                  "price":"6.45",
-                  "placeholder":"top left",
-                  "url":"img/menu/pizza_bg.jpg"
-                },
-                {
-                  "name":"Beef Steak",
-                  "description":"A cut of meat sliced perpendicular to the muscle fibers, potentially including a bone.",
-                  "price":"6.45",
-                  "placeholder":"top left",
-                  "url":"img/menu/steak_bg.jpeg"
-                }
-              ];
+      Parse.initialize("bUpIWG3XoPGQxsS3r1vNfDiDzKExyvUBru97msYU", "TTOqKMRGEhNEeTOuOoPu5hEqdjPf9HX1JXnLU3x8");
+
       var pageElement = '<section class="section page">' +
                             '<section class="placeholder">' +
                               '<header class="name"></header>' +   //name
@@ -82,19 +54,39 @@
                               '</footer>' +
                             '</section>' +
                           '</section>';
-      
-      //loop
-      x.forEach(function(element, i) {
-        $(pageElement).insertAfter(".section:nth(" + (i) + ")");
-        $(".page:nth(" + i + ")").css({
-                                        "background": "url(" + element.url + ") no-repeat center center",
-                                        "background-size": "cover"
-                                      });
-        $(".page:nth(" + i + ") .placeholder").addClass(element.placeholder);
-        $(".page:nth(" + i + ") .name").text(element.name);
-        $(".page:nth(" + i + ") .description").text(element.description);
-        $(".page:nth(" + i + ") .price").text(element.price);
+
+      var NorsemanMenuObject = Parse.Object.extend("NorsemanMenuObject");
+      var norsemanMenuObject = new NorsemanMenuObject();
+      norsemanMenuObject.fetch({
+        success: function(myObject) {
+          myObject.attributes.results.forEach(function(element, i) {
+            $(pageElement).insertAfter(".section:nth(" + (i) + ")");
+            $(".page:nth(" + i + ")").css({
+                                            "background": "url(" + element.url + ") no-repeat center center",
+                                            "background-size": "cover"
+                                          });
+            $(".page:nth(" + i + ") .placeholder").addClass(element.placeholder);
+            $(".page:nth(" + i + ") .name").text(element.name);
+            $(".page:nth(" + i + ") .description").text(element.description);
+            $(".page:nth(" + i + ") .price").text(element.price);
+          });
+
+          initFullPage();
+        },
+        error: function(myObject, error) {
+          alert('Failed to fetch an object, with error code: ' + error.message);
+        }
       });
+
+      function initFullPage() {
+        $('#fullpage').fullpage({
+          'navigation': true,
+          'menu': true,
+          'verticalCentered': false,
+          'easingcss3': 'ease-in-out'
+        });
+      }
+
     </script>
   </body>
 </html>

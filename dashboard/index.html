@@ -2,6 +2,9 @@
 <html>
   <head>
 
+    <meta charset="utf-8">
+    <meta name="description" content="norseman">
+
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -10,7 +13,10 @@
 
     <!--JQuery-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  
+    
+    <!--Parse-->
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.0.min.js"></script>
+
   </head>
   
   <body>
@@ -25,20 +31,24 @@
 
         <div class="col-md-5 form-container">
           <strong class="text-center">Form to Edit</strong>
-          <form class="form-horizontal">
+          <form class="form-horizontal main-form">
             <div class="form-group">
               <label class="sr-only" for="itemName">Name</label>
-              <input type="text" class="form-control" placeholder="Name">
+              <input type="text" class="form-control item-name" placeholder="Name">
             </div>
             <div class="form-group">
               <label class="sr-only" for="itemDescription">Description</label>
-              <textarea  type="text" class="form-control" placeholder="Description" rows="5"></textarea>
+              <textarea  type="text" class="form-control item-description" placeholder="Description" rows="5"></textarea>
             </div>
             <div class="form-group">
               <label class="sr-only" for="itemPrice">Price</label>
-              <input type="text" class="form-control" placeholder="Price($)">
+              <input type="text" class="form-control item-price" placeholder="Price($)">
             </div>
-            <button type="button" class="btn btn-default">Done</button>
+            <div class="form-group">
+              <label class="sr-only" for="itemImage">Background Image</label>
+              <input type="file" id="bg-image-upload">
+            </div>
+            <button type="button" class="btn btn-default" onclick="save();">Update</button>
           </form>
         </div>
       
@@ -59,41 +69,77 @@
 
     <!--JQuery script-->
     <script>
-      //JSON object
-      var x = [
-                {
-                  "name":"...",
-                  "description":"...",
-                  "price":"..."
-                },
-                {
-                  "name":"Sample Text",
-                  "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dictum vitae magna in euismod. Cras sapien ligula, consectetur tempor metus a, fringilla luctus augue. Etiam semper nisi at sapien eleifend, nec imperdiet lectus placerat. Proin pharetra mi ut ipsum ultricies porttitor. Vestibulum in dolor consectetur, pretium arcu sed, rhoncus dolor. Aenean viverra felis vitae pharetra tempor. Aliquam blandit varius urna, vel tincidunt justo ultrices a. Aenean dignissim convallis porta. Nam accumsan pretium imperdiet. Sed gravida sit amet dui eu pulvinar.", 
-                  "price":"123.45"
-                },
-                {
-                  "name":"pizza",
-                  "description":"Pizza is something",
-                  "price":"4.50"
-                }
-              ];
+      Parse.initialize("bUpIWG3XoPGQxsS3r1vNfDiDzKExyvUBru97msYU", "TTOqKMRGEhNEeTOuOoPu5hEqdjPf9HX1JXnLU3x8");
 
-      var tableElement = '<tr>' +
+      var tableElement = '<tr class="generated-row">' +
                             '<td class="active item-name"></td>' +
                             '<td class="success item-description"></td>' +
                             '<td class="warning item-price"></td>' +
                             '<td class="info">' +
-                              '<button type="button" class="btn btn-default">Edit</button>' +
+                              '<button type="button" class="btn btn-default btn-edit">Edit</button>' +
                               '<button type="button" class="btn btn-default">Delete</button>' +
                             '</td>' +
                           '</tr>';
-            
-      x.forEach(function(element, i) {
-        $(".table").append(tableElement);
-        $(".table tr:nth(" + (i + 1) + ") td.item-name").text(element.name);
-        $(".table tr:nth(" + (i + 1) + ") td.item-description").text(element.description);
-        $(".table tr:nth(" + (i + 1) + ") td.item-price").text(element.price);
-      });
+
+      var NorsemanMenuObject = Parse.Object.extend("NorsemanMenuObject");
+      var norsemanMenuObject = new NorsemanMenuObject();
+
+      fetchMenu();
+
+      function fetchMenu() {
+        norsemanMenuObject.fetch({
+          success: function(myObject) {
+            populateTable(myObject);
+          },
+          error: function(myObject, error) {
+            alert('Failed to fetch an object, with error code: ' + error.message);
+          }
+        });
+      }
+
+      function populateTable(myObject) {
+        $('.generated-row').remove();
+        myObject.attributes.results.forEach(function(element, i) {
+          $(".table").append(tableElement);
+          $(".table tr:nth(" + (i + 1) + ")").attr("data-id", element.objectId);
+          $(".table tr:nth(" + (i + 1) + ") .btn-edit").attr("onclick", "edit('" + element.objectId + "');");
+          $(".table tr:nth(" + (i + 1) + ") td.item-name").text(element.name);
+          $(".table tr:nth(" + (i + 1) + ") td.item-description").text(element.description);
+          $(".table tr:nth(" + (i + 1) + ") td.item-price").text(element.price);
+        });
+      }
+
+      function edit(id) {
+        $(".active-edit").removeClass("active-edit");
+        $(".table tr[data-id=" + id + "]").addClass("active-edit");
+        $('.main-form .item-name').val($(".active-edit .item-name").text());
+        $('.main-form .item-description').val($(".active-edit .item-description").text());
+        $('.main-form .item-price').val($(".active-edit .item-price").text());
+      }
+
+      function save() {
+        var element = $('.active-edit');
+        if(element.length) {
+          var elementId = element.attr("data-id");
+          var elementName = $('.main-form .item-name').val();
+          var elementDescription = $('.main-form .item-description').val();
+          var elementPrice = $('.main-form .item-price').val();
+          norsemanMenuObject.set("objectId", elementId);
+          norsemanMenuObject.set("name", elementName);
+          norsemanMenuObject.set("description", elementDescription);
+          norsemanMenuObject.set("price", elementPrice);
+          norsemanMenuObject.save(null, {
+            success: function(myObject) {
+              $('.active-edit td.item-name').text(elementName);
+              $('.active-edit td.item-description').text(elementDescription);
+              $('.active-edit td.item-price').text(elementPrice);
+            },
+            error: function(myObject, error) {
+              alert('Failed to edit an object, with error code: ' + error.message);
+            }
+          });
+        }
+      }
 
     </script>
   </body>
