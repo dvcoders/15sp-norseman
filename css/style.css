@@ -103,7 +103,3 @@ body #fp-nav ul li a.active span, .fp-slidesNav ul li a.active span {
 body #fp-nav ul li a span, .fp-slidesNav ul li a span {
   border: 1px solid white;
 }
-
-.hidden {
-  display: none;
-}

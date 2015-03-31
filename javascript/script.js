@@ -44,5 +44,4 @@ function initFullPage() {
     'verticalCentered': false,
     'easingcss3': 'ease-in-out'
   });
-  $('body').removeClass('hidden');
 }
